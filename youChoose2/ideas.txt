@@ -1,0 +1,16 @@
+*) how are we going to get the restaurants?
+
+-) info needed about each restaurant:
+
++ name
++ location
++ type
++ extra info
+
+
+
+1) function for if someone goes, "wait, what did you say before?"
+
+2) after the what about question --> user can say "tell me more about them"
+
+3) at the end, let alexa call the restaurant for you

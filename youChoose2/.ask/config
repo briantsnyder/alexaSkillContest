@@ -1,0 +1,43 @@
+{
+  "deploy_settings": {
+    "matman": {
+      "skill_id": "amzn1.ask.skill.15c04cc0-f229-4ab7-b68f-839babc5e904",
+      "was_cloned": false,
+      "merge": {
+        "manifest": {
+          "apis": {
+            "custom": {
+              "endpoint": {
+                "uri": "arn:aws:lambda:us-east-1:962029759400:function:ask-custom-youChoose2-matman"
+              }
+            }
+          }
+        }
+      },
+      "resources": {
+        "manifest": {
+          "eTag": "6c0e0282d877bf27f4e956b9e4c5d8ba"
+        },
+        "interactionModel": {
+          "en-US": {
+            "eTag": "1d5f309c2274aee1e4c2ae9c70ad1bff"
+          }
+        },
+        "lambda": [
+          {
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "arn": "arn:aws:lambda:us-east-1:962029759400:function:ask-custom-youChoose2-matman",
+            "awsRegion": "us-east-1",
+            "codeUri": "lambda/custom",
+            "functionName": "ask-custom-youChoose2-matman",
+            "handler": "index.handler",
+            "revisionId": "0e7a4f3d-db27-46f8-97e5-0123d60cb068",
+            "runtime": "nodejs8.10"
+          }
+        ]
+      }
+    }
+  }
+}
