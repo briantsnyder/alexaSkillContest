@@ -28,6 +28,14 @@
                     "samples": []
                 },
                 {
+                  "name": "MoreInfoIntent",
+                  "slots": [],
+                  "samples" : [
+                    "tell me more",
+                    "what do they have"
+                  ]
+                },
+                {
                     "name": "YesIntent",
                     "slots": [
                         {

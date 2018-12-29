@@ -23,6 +23,27 @@ const LaunchRequestHandler = {
   },
 };
 
+const MoreInfoHandler = {
+  canHandle(handlerInput){
+    const request = handlerInput.requestEnvelope.request;
+    const attributes = handlerInput.attributesManager.getSessionAttributes();
+
+    return (request.type === "IntentRequest") &&
+           (request.intent.name === "MoreInfoIntent" && attributes.state === "GUESSING" );
+
+  },
+  handle(handlerInput){
+
+    const response = handlerInput.responseBuilder;
+    const attributes = handlerInput.attributesManager.getSessionAttributes();
+
+    return response.speak(`Successfully captured `+restaurants[attributes.counter])
+                  .reprompt(`Uh oh`)
+                  .getResponse();
+
+  }
+}
+
 //my function:
 const YesHandler = {
   //set up slot to accept either "yes" or "no"
@@ -42,6 +63,8 @@ const YesHandler = {
 
     const response = handlerInput.responseBuilder;
     const attributes = handlerInput.attributesManager.getSessionAttributes();
+
+    attributes.counter++;
 
     if( handlerInput.requestEnvelope.request.intent.slots.mui.value === "yes"){
       //maybe more elegant way to end??
@@ -273,8 +296,6 @@ function suggestRestaurant(handlerInput){
         msg += "What about "+restaurants[attributes.counter];
       }
 
-    attributes.counter++;
-
     return msg;
 
 }
@@ -491,7 +512,7 @@ function shuffle(array) {
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    // QuizHandler,
+    MoreInfoHandler,
     BeginHandler,
     // QuizAnswerHandler,
     RepeatHandler,

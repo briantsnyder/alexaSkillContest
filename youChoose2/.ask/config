@@ -20,7 +20,7 @@
         },
         "interactionModel": {
           "en-US": {
-            "eTag": "1d5f309c2274aee1e4c2ae9c70ad1bff"
+            "eTag": "804562fede47b82d70786792390ce783"
           }
         },
         "lambda": [
@@ -33,7 +33,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-youChoose2-matman",
             "handler": "index.handler",
-            "revisionId": "0e7a4f3d-db27-46f8-97e5-0123d60cb068",
+            "revisionId": "0dd08d14-2684-4c63-bd65-3bc2a0661fcc",
             "runtime": "nodejs8.10"
           }
         ]
