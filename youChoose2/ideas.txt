@@ -6,11 +6,11 @@
 + location
 + type
 + extra info
++ phone number
 
 
 
 1) function for if someone goes, "wait, what did you say before?"
+--> is this just adding new samples to the intent of repeat?
 
-2) after the what about question --> user can say "tell me more about them"
-
-3) at the end, let alexa call the restaurant for you
+2) at the end, let alexa call the restaurant for you

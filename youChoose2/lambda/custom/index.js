@@ -7,6 +7,7 @@
 // See this screenshot - https://alexa.design/enabledisplay
 
 const Alexa = require('ask-sdk-core');
+const http = require('http');
 
 /* INTENT HANDLERS */
 
@@ -44,7 +45,6 @@ const MoreInfoHandler = {
   }
 }
 
-//my function:
 const YesHandler = {
   //set up slot to accept either "yes" or "no"
   canHandle(handlerInput){
@@ -52,14 +52,10 @@ const YesHandler = {
     const attributes = handlerInput.attributesManager.getSessionAttributes();
     const request = handlerInput.requestEnvelope.request;
 
-    //is the issue the attributes state?
-
-    return request.type === 'IntentRequest' && request.intent.name === "YesIntent";
+    //need to make sure the beginIntent is fired first
+    return request.type === 'IntentRequest' && request.intent.name === "YesIntent" && attributes.state === "GUESSING";
   },
   handle(handlerInput){
-
-    //some error here is preventing us from being able to go through
-    // quesetion is when does it break??
 
     const response = handlerInput.responseBuilder;
     const attributes = handlerInput.attributesManager.getSessionAttributes();
@@ -74,7 +70,7 @@ const YesHandler = {
     }
 
     var suggestion = suggestRestaurant(handlerInput);
-    var speakOutput = "Gotcha. " + suggestion;
+    var speakOutput = "Gotcha. " + suggestion+test;
     var repromptOutput = suggestion;
 
     return response.speak(speakOutput)
@@ -83,9 +79,13 @@ const YesHandler = {
   }
 }
 
-const BeginHandler = {
+//we'll need an array for name, type & extra info
+//type may be the most difficult thing to implement
 
-  //why isn't this being activated in the first place???
+//test will be the new array for restaurants
+var test;
+
+const BeginHandler = {
 
   canHandle(handlerInput){
     const attributes = handlerInput.attributesManager.getSessionAttributes();
@@ -100,25 +100,25 @@ const BeginHandler = {
     attributes.state = "GUESSING";
     attributes.counter = 0;
 
-    var suggestion = suggestRestaurant(handlerInput);
-    var speakOutput = suggestion;
-    var repromptOutput = suggestion;
+    const query = 1;
 
-    return response.speak(speakOutput)
-                   .reprompt(repromptOutput)
-                   .getResponse();
+    //how to account for when people have bad internet connections?-> alexa voice to say 'loading'
+
+    httpGet((theResult) => {
+                console.log("sent     : " + query);
+                console.log("received : " + theResult);
+                test = theResult;
+            });
+
+            var suggestion = suggestRestaurant(handlerInput);
+            var speakOutput = suggestion;
+            var repromptOutput = suggestion;
+
+            return response.speak(speakOutput)
+                           .reprompt(repromptOutput)
+                           .getResponse();
 
   }
-}
-
-const MainHandler = {
-  canHandle(handlerInput){
-    const attributes = handlerInput.attributesManager.getSessionAttributes();
-    const request = handlerInput.requestEnvelope.request;
-
-    return request.intent.name === ""
-  }
-
 }
 
 const RepeatHandler = {
@@ -208,67 +208,6 @@ const ErrorHandler = {
 
 /* CONSTANTS */
 const skillBuilder = Alexa.SkillBuilders.custom();
-// const imagePath = "https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/quiz-game/state_flag/{0}x{1}/{2}._TTH_.png";
-// const backgroundImagePath = "https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/quiz-game/state_flag/{0}x{1}/{2}._TTH_.png"
-// const speechConsCorrect = ['Booya', 'All righty', 'Bam', 'Bazinga', 'Bingo', 'Boom', 'Bravo', 'Cha Ching', 'Cheers', 'Dynomite', 'Hip hip hooray', 'Hurrah', 'Hurray', 'Huzzah', 'Oh dear.  Just kidding.  Hurray', 'Kaboom', 'Kaching', 'Oh snap', 'Phew','Righto', 'Way to go', 'Well done', 'Whee', 'Woo hoo', 'Yay', 'Wowza', 'Yowsa'];
-// const speechConsWrong = ['Argh', 'Aw man', 'Blarg', 'Blast', 'Boo', 'Bummer', 'Darn', "D'oh", 'Dun dun dun', 'Eek', 'Honk', 'Le sigh', 'Mamma mia', 'Oh boy', 'Oh dear', 'Oof', 'Ouch', 'Ruh roh', 'Shucks', 'Uh oh', 'Wah wah', 'Whoops a daisy', 'Yikes'];
-const data = [
-  {StateName: 'Alabama', Abbreviation: 'AL', Capital: 'Montgomery', StatehoodYear: 1819, StatehoodOrder: 22},
-  {StateName: 'Alaska', Abbreviation: 'AK', Capital: 'Juneau', StatehoodYear: 1959, StatehoodOrder: 49},
-  {StateName: 'Arizona', Abbreviation: 'AZ', Capital: 'Phoenix', StatehoodYear: 1912, StatehoodOrder: 48},
-  {StateName: 'Arkansas', Abbreviation: 'AR', Capital: 'Little Rock', StatehoodYear: 1836, StatehoodOrder: 25},
-  {StateName: 'California', Abbreviation: 'CA', Capital: 'Sacramento', StatehoodYear: 1850, StatehoodOrder: 31},
-  {StateName: 'Colorado', Abbreviation: 'CO', Capital: 'Denver', StatehoodYear: 1876, StatehoodOrder: 38},
-  {StateName: 'Connecticut', Abbreviation: 'CT', Capital: 'Hartford', StatehoodYear: 1788, StatehoodOrder: 5},
-  {StateName: 'Delaware', Abbreviation: 'DE', Capital: 'Dover', StatehoodYear: 1787, StatehoodOrder: 1},
-  {StateName: 'Florida', Abbreviation: 'FL', Capital: 'Tallahassee', StatehoodYear: 1845, StatehoodOrder: 27},
-  {StateName: 'Georgia', Abbreviation: 'GA', Capital: 'Atlanta', StatehoodYear: 1788, StatehoodOrder: 4},
-  {StateName: 'Hawaii', Abbreviation: 'HI', Capital: 'Honolulu', StatehoodYear: 1959, StatehoodOrder: 50},
-  {StateName: 'Idaho', Abbreviation: 'ID', Capital: 'Boise', StatehoodYear: 1890, StatehoodOrder: 43},
-  {StateName: 'Illinois', Abbreviation: 'IL', Capital: 'Springfield', StatehoodYear: 1818, StatehoodOrder: 21},
-  {StateName: 'Indiana', Abbreviation: 'IN', Capital: 'Indianapolis', StatehoodYear: 1816, StatehoodOrder: 19},
-  {StateName: 'Iowa', Abbreviation: 'IA', Capital: 'Des Moines', StatehoodYear: 1846, StatehoodOrder: 29},
-  {StateName: 'Kansas', Abbreviation: 'KS', Capital: 'Topeka', StatehoodYear: 1861, StatehoodOrder: 34},
-  {StateName: 'Kentucky', Abbreviation: 'KY', Capital: 'Frankfort', StatehoodYear: 1792, StatehoodOrder: 15},
-  {StateName: 'Louisiana', Abbreviation: 'LA', Capital: 'Baton Rouge', StatehoodYear: 1812, StatehoodOrder: 18},
-  {StateName: 'Maine', Abbreviation: 'ME', Capital: 'Augusta', StatehoodYear: 1820, StatehoodOrder: 23},
-  {StateName: 'Maryland', Abbreviation: 'MD', Capital: 'Annapolis', StatehoodYear: 1788, StatehoodOrder: 7},
-  {StateName: 'Massachusetts', Abbreviation: 'MA', Capital: 'Boston', StatehoodYear: 1788, StatehoodOrder: 6},
-  {StateName: 'Michigan', Abbreviation: 'MI', Capital: 'Lansing', StatehoodYear: 1837, StatehoodOrder: 26},
-  {StateName: 'Minnesota', Abbreviation: 'MN', Capital: 'St. Paul', StatehoodYear: 1858, StatehoodOrder: 32},
-  {StateName: 'Mississippi', Abbreviation: 'MS', Capital: 'Jackson', StatehoodYear: 1817, StatehoodOrder: 20},
-  {StateName: 'Missouri', Abbreviation: 'MO', Capital: 'Jefferson City', StatehoodYear: 1821, StatehoodOrder: 24},
-  {StateName: 'Montana', Abbreviation: 'MT', Capital: 'Helena', StatehoodYear: 1889, StatehoodOrder: 41},
-  {StateName: 'Nebraska', Abbreviation: 'NE', Capital: 'Lincoln', StatehoodYear: 1867, StatehoodOrder: 37},
-  {StateName: 'Nevada', Abbreviation: 'NV', Capital: 'Carson City', StatehoodYear: 1864, StatehoodOrder: 36},
-  {StateName: 'New Hampshire', Abbreviation: 'NH', Capital: 'Concord', StatehoodYear: 1788, StatehoodOrder: 9},
-  {StateName: 'New Jersey', Abbreviation: 'NJ', Capital: 'Trenton', StatehoodYear: 1787, StatehoodOrder: 3},
-  {StateName: 'New Mexico', Abbreviation: 'NM', Capital: 'Santa Fe', StatehoodYear: 1912, StatehoodOrder: 47},
-  {StateName: 'New York', Abbreviation: 'NY', Capital: 'Albany', StatehoodYear: 1788, StatehoodOrder: 11},
-  {StateName: 'North Carolina', Abbreviation: 'NC', Capital: 'Raleigh', StatehoodYear: 1789, StatehoodOrder: 12},
-  {StateName: 'North Dakota', Abbreviation: 'ND', Capital: 'Bismarck', StatehoodYear: 1889, StatehoodOrder: 39},
-  {StateName: 'Ohio', Abbreviation: 'OH', Capital: 'Columbus', StatehoodYear: 1803, StatehoodOrder: 17},
-  {StateName: 'Oklahoma', Abbreviation: 'OK', Capital: 'Oklahoma City', StatehoodYear: 1907, StatehoodOrder: 46},
-  {StateName: 'Oregon', Abbreviation: 'OR', Capital: 'Salem', StatehoodYear: 1859, StatehoodOrder: 33},
-  {StateName: 'Pennsylvania', Abbreviation: 'PA', Capital: 'Harrisburg', StatehoodYear: 1787, StatehoodOrder: 2},
-  {StateName: 'Rhode Island', Abbreviation: 'RI', Capital: 'Providence', StatehoodYear: 1790, StatehoodOrder: 13},
-  {StateName: 'South Carolina', Abbreviation: 'SC', Capital: 'Columbia', StatehoodYear: 1788, StatehoodOrder: 8},
-  {StateName: 'South Dakota', Abbreviation: 'SD', Capital: 'Pierre', StatehoodYear: 1889, StatehoodOrder: 40},
-  {StateName: 'Tennessee', Abbreviation: 'TN', Capital: 'Nashville', StatehoodYear: 1796, StatehoodOrder: 16},
-  {StateName: 'Texas', Abbreviation: 'TX', Capital: 'Austin', StatehoodYear: 1845, StatehoodOrder: 28},
-  {StateName: 'Utah', Abbreviation: 'UT', Capital: 'Salt Lake City', StatehoodYear: 1896, StatehoodOrder: 45},
-  {StateName: 'Vermont', Abbreviation: 'VT', Capital: 'Montpelier', StatehoodYear: 1791, StatehoodOrder: 14},
-  {StateName: 'Virginia', Abbreviation: 'VA', Capital: 'Richmond', StatehoodYear: 1788, StatehoodOrder: 10},
-  {StateName: 'Washington', Abbreviation: 'WA', Capital: 'Olympia', StatehoodYear: 1889, StatehoodOrder: 42},
-  {StateName: 'West Virginia', Abbreviation: 'WV', Capital: 'Charleston', StatehoodYear: 1863, StatehoodOrder: 35},
-  {StateName: 'Wisconsin', Abbreviation: 'WI', Capital: 'Madison', StatehoodYear: 1848, StatehoodOrder: 30},
-  {StateName: 'Wyoming', Abbreviation: 'WY', Capital: 'Cheyenne', StatehoodYear: 1890, StatehoodOrder: 44},
-];
-
-// const states = {
-//   START: `_START`,
-//   QUIZ: `_QUIZ`,
-// };
 
 const welcomeMessage = `Welcome to You Choose!  I will help you choose a local restaurant to go to. Ask me to choose a restaurant`;
 // const startQuizMessage = `OK.  I will ask you 10 questions about the United States. `;
@@ -297,7 +236,38 @@ function suggestRestaurant(handlerInput){
       }
 
     return msg;
+}
 
+const key = require("./key.json");
+
+async function httpGet(callback) {
+
+        //why are we getting a 404 error for the maps api??
+    var path = '/maps/api/place/findplacefromtext/json?input=restaurant&inputtype=textquery&fields=formatted_address,name,opening_hours,rating&locationbias=ipbias&key='+key.key;
+
+    var options = {
+        host: 'maps.googleapis.com',
+        path: '/' + encodeURIComponent(path),
+        method: 'GET',
+    };
+
+    var req = await http.request(options, res => {
+        res.setEncoding('utf8');
+        var responseString = "";
+
+        //accept incoming data asynchronously
+        res.on('data', chunk => {
+            responseString = responseString + chunk;
+        });
+
+        //return the data when streaming is complete
+        res.on('end', () => {
+            console.log(responseString);
+            callback(responseString);
+        });
+
+    });
+    req.end();
 }
 
 
@@ -464,13 +434,6 @@ function getMultipleChoiceAnswers(currentIndex, item, property) {
   // insert the correct answer first
   let answerList = [item[property]];
 
-  // There's a possibility that we might get duplicate answers
-  // 8 states were founded in 1788
-  // 4 states were founded in 1889
-  // 3 states were founded in 1787
-  // to prevent duplicates we need avoid index collisions and take a sample of
-  // 8 + 4 + 1 = 13 answers (it's not 8+4+3 because later we take the unique
-  // we only need the minimum.)
   let count = 0
   let upperBound = 12
 
