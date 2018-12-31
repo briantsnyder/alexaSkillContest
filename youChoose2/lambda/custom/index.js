@@ -8,6 +8,7 @@
 
 const Alexa = require('ask-sdk-core');
 const http = require('http');
+const https = require("https");
 
 /* INTENT HANDLERS */
 
@@ -17,6 +18,15 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === `LaunchRequest`;
   },
   handle(handlerInput) {
+
+
+    //we're going to set the location in attributes
+    const attributes = handlerInput.attributesManager.getSessionAttributes();
+
+
+    //we need to make sure the device is notified if no address is given
+    attributes.location = getLocation(handlerInput);
+
     return handlerInput.responseBuilder
       .speak(welcomeMessage)
       .reprompt(helpMessage)
@@ -100,14 +110,15 @@ const BeginHandler = {
     attributes.state = "GUESSING";
     attributes.counter = 0;
 
-    const query = 1;
-
+    const query = 'maps/api/place/findplacefromtext/json?input=restaurant&inputtype=textquery&fields=formatted_address,name,opening_hours,rating&key='+key.key;
     //how to account for when people have bad internet connections?-> alexa voice to say 'loading'
 
-    httpGet((theResult) => {
-                console.log("sent     : " + query);
+    httpsGet(query, (theResult) => {
                 console.log("received : " + theResult);
+                //we'll need to be careful how we store it from here on out
+                //putting it into arrays etc
                 test = theResult;
+
             });
 
             var suggestion = suggestRestaurant(handlerInput);
@@ -240,18 +251,29 @@ function suggestRestaurant(handlerInput){
 
 const key = require("./key.json");
 
-async function httpGet(callback) {
+async function httpsGet(path, callback) {
 
-        //why are we getting a 404 error for the maps api??
-    var path = '/maps/api/place/findplacefromtext/json?input=restaurant&inputtype=textquery&fields=formatted_address,name,opening_hours,rating&locationbias=ipbias&key='+key.key;
+      //error using ipbias in the api to find a location ==> we'll need to supply the location via an alexa location data-point
 
-    var options = {
-        host: 'maps.googleapis.com',
-        path: '/' + encodeURIComponent(path),
-        method: 'GET',
-    };
+      //https://developer.amazon.com/docs/custom-skills/device-address-api.html
+      //
 
-    var req = await http.request(options, res => {
+      if(path !== "/v1/devices/*deviceId*/settings/address/countryAndPostalCode"){
+        var options = {
+            host: 'maps.googleapis.com',
+            path: '/' + (path),
+            method: 'GET',
+        };
+      }else{
+        var options = {
+            host: 'api.amazonalexa.com',
+            path: '/' + (path),
+            method: 'GET',
+        };
+      }
+
+
+    var req = await https.request(options, res => {
         res.setEncoding('utf8');
         var responseString = "";
 
@@ -262,12 +284,26 @@ async function httpGet(callback) {
 
         //return the data when streaming is complete
         res.on('end', () => {
-            console.log(responseString);
             callback(responseString);
         });
 
     });
     req.end();
+}
+
+function getLocation(handlerInput){
+
+  //need to find the address from the alexa api
+    var device = handlerInput.System.device.deviceId;
+    console.log(device);
+    var path = "/v1/devices/"+device+"/settings/address/countryAndPostalCode";
+
+
+
+  //need to return the zipcode from the alexa api
+  //via binary search
+
+
 }
 
 
