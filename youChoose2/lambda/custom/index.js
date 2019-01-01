@@ -15,17 +15,21 @@ const https = require("https");
 //this is the entry to the app
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
+    console.log('inside launch');
     return handlerInput.requestEnvelope.request.type === `LaunchRequest`;
   },
   handle(handlerInput) {
 
+    //there is an issue with the launch handler request
+    //the app never executes what's inside the launch request handler
 
-    //we're going to set the location in attributes
-    const attributes = handlerInput.attributesManager.getSessionAttributes();
-
-
-    //we need to make sure the device is notified if no address is given
-    attributes.location = getLocation(handlerInput);
+    //
+    // //we're going to set the location in attributes
+    // const attributes = handlerInput.attributesManager.getSessionAttributes();
+    //
+    // //we need to make sure the device is notified if no address is given
+    // console.log('before');
+    // attributes.location = getLocation(handlerInput);
 
     return handlerInput.responseBuilder
       .speak(welcomeMessage)
@@ -113,13 +117,16 @@ const BeginHandler = {
     const query = 'maps/api/place/findplacefromtext/json?input=restaurant&inputtype=textquery&fields=formatted_address,name,opening_hours,rating&key='+key.key;
     //how to account for when people have bad internet connections?-> alexa voice to say 'loading'
 
-    httpsGet(query, (theResult) => {
-                console.log("received : " + theResult);
-                //we'll need to be careful how we store it from here on out
-                //putting it into arrays etc
-                test = theResult;
-
-            });
+    //commenting this out now so that we don't have to worry about overusing the API limit while
+    //developing
+    
+    // httpsGet(query, (theResult) => {
+    //             console.log("received : " + theResult);
+    //             //we'll need to be careful how we store it from here on out
+    //             //putting it into arrays etc
+    //             test = theResult;
+    //
+    //         });
 
             var suggestion = suggestRestaurant(handlerInput);
             var speakOutput = suggestion;
@@ -294,11 +301,11 @@ async function httpsGet(path, callback) {
 function getLocation(handlerInput){
 
   //need to find the address from the alexa api
-    var device = handlerInput.System.device.deviceId;
-    console.log(device);
-    var path = "/v1/devices/"+device+"/settings/address/countryAndPostalCode";
-
-
+    var {deviceId} = handlerInput.context.System.device;
+    var path = "/v1/devices/"+deviceId+"/settings/address/countryAndPostalCode";
+    httpsGet(path, (result) => {
+      console.log("gimme the county & postal code",result);
+    })
 
   //need to return the zipcode from the alexa api
   //via binary search
