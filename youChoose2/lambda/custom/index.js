@@ -20,26 +20,16 @@ const LaunchRequestHandler = {
   },
   handle(handlerInput) {
 
-    //there is an issue with the launch handler request
-    //the app never executes what's inside the launch request handler
-
-    //
-    // //we're going to set the location in attributes
-    // const attributes = handlerInput.attributesManager.getSessionAttributes();
-    //
-    // //we need to make sure the device is notified if no address is given
-    // console.log('before');
-    // attributes.location = getLocation(handlerInput);
-
     return handlerInput.responseBuilder
       .speak(welcomeMessage)
       .reprompt(helpMessage)
       .getResponse();
-  },
+  }
 };
 
 const MoreInfoHandler = {
   canHandle(handlerInput){
+    console.log('inside more info handler');
     const request = handlerInput.requestEnvelope.request;
     const attributes = handlerInput.attributesManager.getSessionAttributes();
 
@@ -102,6 +92,7 @@ var test;
 const BeginHandler = {
 
   canHandle(handlerInput){
+    console.log('inside begin handler');
     const attributes = handlerInput.attributesManager.getSessionAttributes();
     const request = handlerInput.requestEnvelope.request;
 
@@ -114,13 +105,20 @@ const BeginHandler = {
     attributes.state = "GUESSING";
     attributes.counter = 0;
 
+    //let's test out the location grabber:
+
+    const location = getLocation(handlerInput);
+
+    console.log('reached2');
+
+    const host = 'maps.googleapis.com';
     const query = 'maps/api/place/findplacefromtext/json?input=restaurant&inputtype=textquery&fields=formatted_address,name,opening_hours,rating&key='+key.key;
     //how to account for when people have bad internet connections?-> alexa voice to say 'loading'
 
     //commenting this out now so that we don't have to worry about overusing the API limit while
     //developing
-    
-    // httpsGet(query, (theResult) => {
+
+    // httpsGet(host ,query, (theResult) => {
     //             console.log("received : " + theResult);
     //             //we'll need to be careful how we store it from here on out
     //             //putting it into arrays etc
@@ -129,7 +127,7 @@ const BeginHandler = {
     //         });
 
             var suggestion = suggestRestaurant(handlerInput);
-            var speakOutput = suggestion;
+            var speakOutput = location+suggestion;
             var repromptOutput = suggestion;
 
             return response.speak(speakOutput)
@@ -158,7 +156,7 @@ const RepeatHandler = {
       .speak(question)
       .reprompt(question)
       .getResponse();
-  },
+  }
 };
 
 const HelpHandler = {
@@ -174,7 +172,7 @@ const HelpHandler = {
       .speak(helpMessage)
       .reprompt(helpMessage)
       .getResponse();
-  },
+  }
 };
 
 const ExitHandler = {
@@ -193,7 +191,7 @@ const ExitHandler = {
     return handlerInput.responseBuilder
       .speak(exitSkillMessage)
       .getResponse();
-  },
+  }
 };
 
 const SessionEndedRequestHandler = {
@@ -204,7 +202,7 @@ const SessionEndedRequestHandler = {
   handle(handlerInput) {
     console.log(`Session ended with reason: ${JSON.stringify(handlerInput.requestEnvelope)}`);
     return handlerInput.responseBuilder.getResponse();
-  },
+  }
 };
 
 const ErrorHandler = {
@@ -221,7 +219,7 @@ const ErrorHandler = {
       .speak(helpMessage)
       .reprompt(helpMessage)
       .getResponse();
-  },
+  }
 };
 
 /* CONSTANTS */
@@ -258,29 +256,23 @@ function suggestRestaurant(handlerInput){
 
 const key = require("./key.json");
 
-async function httpsGet(path, callback) {
+async function httpsGet(host, path, callback) {
 
-      //error using ipbias in the api to find a location ==> we'll need to supply the location via an alexa location data-point
+      //error using ipbias in the api to find a location
+      // ==> we'll need to supply the location via an alexa location data-point
 
       //https://developer.amazon.com/docs/custom-skills/device-address-api.html
       //
 
-      if(path !== "/v1/devices/*deviceId*/settings/address/countryAndPostalCode"){
+
         var options = {
-            host: 'maps.googleapis.com',
+            host: host,
             path: '/' + (path),
             method: 'GET',
-        };
-      }else{
-        var options = {
-            host: 'api.amazonalexa.com',
-            path: '/' + (path),
-            method: 'GET',
-        };
-      }
+          }
 
 
-    var req = await https.request(options, res => {
+    var req = await https.request( options, res => {
         res.setEncoding('utf8');
         var responseString = "";
 
@@ -301,10 +293,13 @@ async function httpsGet(path, callback) {
 function getLocation(handlerInput){
 
   //need to find the address from the alexa api
-    var {deviceId} = handlerInput.context.System.device;
+  console.log('reached ;)');
+    var deviceId = handlerInput;
+    console.log(deviceId, "output it!");
+    const host = "api.amazonalexa.com";
     var path = "/v1/devices/"+deviceId+"/settings/address/countryAndPostalCode";
-    httpsGet(path, (result) => {
-      console.log("gimme the county & postal code",result);
+    httpsGet(host, path, (result) => {
+      return "gimme the county & postal code",result;
     })
 
   //need to return the zipcode from the alexa api
@@ -515,12 +510,12 @@ function shuffle(array) {
 }
 
 /* LAMBDA SETUP */
+//the order these are listed is the order they are checked in
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
     MoreInfoHandler,
     BeginHandler,
-    // QuizAnswerHandler,
     RepeatHandler,
     HelpHandler,
     ExitHandler,
