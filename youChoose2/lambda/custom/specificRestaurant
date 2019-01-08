@@ -1,0 +1,344 @@
+{
+    "type": "APL",
+    "version": "1.0",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-viewport-profiles",
+            "version": "1.0.0"
+        }
+    ],
+    "resources": [
+        {
+            "colors": {
+                "defaultColor": "#0A1EFF"
+            }
+        }
+    ],
+    "styles": {},
+    "layouts": {},
+    "mainTemplate": {
+        "items": [
+            {
+                "type": "Container",
+                "width": "100vw",
+                "height": "100vh",
+                "items": [
+                    {
+                        "type": "Frame",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "backgroundColor": "#0ADCFF",
+                        "item": {
+                            "type": "Container",
+                            "width": "100vw",
+                            "height": "100vh",
+                            "items": [
+                                {
+                                    "when": "${@viewportProfile == @hubLandscapeMedium}",
+                                    "type": "Container",
+                                    "width": "100vw",
+                                    "height": "100vh",
+                                    "items": [
+                                        {
+                                            "type": "Text",
+                                            "text": "Amalfis",
+                                            "color": "#FFFFFF",
+                                            "fontSize": "6vw",
+                                            "fontWeight": "900",
+                                            "lineHeight": "1",
+                                            "position": "absolute",
+                                            "left": "5vw",
+                                            "top": "4vh"
+                                        },
+                                         {
+                                            "type": "Image",
+                                            "source": "https://s3-media3.fl.yelpcdn.com/bphoto/fVb3T1VHfvoYUoVjVb7Hvw/348s.jpg",
+                                            "height": 348,
+                                            "width": 348,
+                                            "position": "absolute",
+                                            "top": "14vh",
+                                            "left": "5vw"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "Italian",
+                                            "position": "absolute",
+                                            "top": "12vh",
+                                            "left": "41vw"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "Yeehaw Junction, Atlantis",
+                                            "position": "absolute",
+                                            "left": "41vw",
+                                            "top": "18vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "(555) 555-5555",
+                                            "position": "absolute",
+                                            "left": "41vw",
+                                            "top": "24vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "$$$",
+                                            "position": "absolute",
+                                            "left": "41vw",
+                                            "top": "32vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "'When I first had Amalfis I was like OMG, this is the s***!!! 10/10 without a doubt.",
+                                            "position": "absolute",
+                                            "left": "41vw",
+                                            "top": "42vh",
+                                            "lineHeight": 1
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://images.vexels.com/media/users/3/137415/isolated/preview/0e475bb9b17b3fa4f94f31fba1635b8f-telephone-call-icon-logo-by-vexels.png",
+                                            "height": 200,
+                                            "width": 200,
+                                            "position": "absolute",
+                                            "top": "65vh",
+                                            "left": "41vw"
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://pngimage.net/wp-content/uploads/2018/06/website-png-logo-2.png",
+                                            "height": 200,
+                                            "width": 200,
+                                            "position": "absolute",
+                                            "top": "65vh",
+                                            "left": "70vw"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "when": "${@viewportProfile == @hubLandscapeLarge}",
+                                    "type": "Container",
+                                    "width": "100vw",
+                                    "height": "100vh",
+                                    "items": [
+                                        {
+                                            "type": "Text",
+                                            "text": "Amalfis",
+                                            "color": "#FFFFFF",
+                                            "fontSize": "6vw",
+                                            "fontWeight": "900",
+                                            "lineHeight": "1",
+                                            "position": "absolute",
+                                            "left": "5vw",
+                                            "top": "4vh"
+                                        },
+                                         {
+                                            "type": "Image",
+                                            "source": "https://s3-media3.fl.yelpcdn.com/bphoto/fVb3T1VHfvoYUoVjVb7Hvw/348s.jpg",
+                                            "height": 450,
+                                            "width": 450,
+                                            "position": "absolute",
+                                            "top": "14vh",
+                                            "left": "5vw"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "Italian",
+                                            "position": "absolute",
+                                            "top": "12vh",
+                                            "left": "42vw"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "Yeehaw Junction, Atlantis",
+                                            "position": "absolute",
+                                            "left": "42vw",
+                                            "top": "18vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "(555) 555-5555",
+                                            "position": "absolute",
+                                            "left": "42vw",
+                                            "top": "24vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "$$$",
+                                            "position": "absolute",
+                                            "left": "42vw",
+                                            "top": "32vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "'When I first had Amalfis I was like OMG, this is the s***!!! 10/10 without a doubt.",
+                                            "position": "absolute",
+                                            "left": "42vw",
+                                            "top": "42vh",
+                                            "lineHeight": 1
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://images.vexels.com/media/users/3/137415/isolated/preview/0e475bb9b17b3fa4f94f31fba1635b8f-telephone-call-icon-logo-by-vexels.png",
+                                            "height": 250,
+                                            "width": 250,
+                                            "position": "absolute",
+                                            "top": "65vh",
+                                            "left": "42vw"
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://pngimage.net/wp-content/uploads/2018/06/website-png-logo-2.png",
+                                            "height": 250,
+                                            "width": 250,
+                                            "position": "absolute",
+                                            "top": "65vh",
+                                            "left": "70vw"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "when": "${@viewportProfile == @tvLandscapeXLarge}",
+                                    "type": "Container",
+                                    "width": "100vw",
+                                    "height": "100vh",
+                                    "items": [
+                                        {
+                                            "type": "Text",
+                                            "text": "Amalfis",
+                                            "color": "#FFFFFF",
+                                            "fontSize": "6vw",
+                                            "fontWeight": "900",
+                                            "lineHeight": "1",
+                                            "position": "absolute",
+                                            "left": "5vw",
+                                            "top": "4vh"
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://s3-media3.fl.yelpcdn.com/bphoto/fVb3T1VHfvoYUoVjVb7Hvw/348s.jpg",
+                                            "height": 348,
+                                            "width": 348,
+                                            "position": "absolute",
+                                            "top": "14vh",
+                                            "left": "5vw"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "Italian",
+                                            "position": "absolute",
+                                            "top": "12vh",
+                                            "left": "43vw"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "Yeehaw Junction, Atlantis",
+                                            "position": "absolute",
+                                            "left": "43vw",
+                                            "top": "19vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "(555) 555-5555",
+                                            "position": "absolute",
+                                            "left": "43vw",
+                                            "top": "26vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "$$$",
+                                            "position": "absolute",
+                                            "left": "43vw",
+                                            "top": "34vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "'When I first had Amalfis I was like OMG, this is the s***!!! 10/10 without a doubt.",
+                                            "position": "absolute",
+                                            "left": "43vw",
+                                            "top": "45vh",
+                                            "lineHeight": 1
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://images.vexels.com/media/users/3/137415/isolated/preview/0e475bb9b17b3fa4f94f31fba1635b8f-telephone-call-icon-logo-by-vexels.png",
+                                            "height": 170,
+                                            "width": 170,
+                                            "position": "absolute",
+                                            "top": "67vh",
+                                            "left": "43vw"
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://pngimage.net/wp-content/uploads/2018/06/website-png-logo-2.png",
+                                            "height": 170,
+                                            "width": 170,
+                                            "position": "absolute",
+                                            "top": "67vh",
+                                            "left": "70vw"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "when": "${@viewportProfile == @hubRoundSmall}",
+                                    "type": "Container",
+                                    "width": "100vw",
+                                    "height": "100vh",
+                                    "items": [
+                                        {
+                                            "type": "Text",
+                                            "text": "Amalfis",
+                                            "textAlign": "center"
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://s3-media3.fl.yelpcdn.com/bphoto/fVb3T1VHfvoYUoVjVb7Hvw/348s.jpg",
+                                            "height": 200,
+                                            "width": 200,
+                                            "position": "absolute",
+                                            "left": "28vw",
+                                            "top": "10vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "Italian",
+                                            "position": "absolute",
+                                            "left": "38vw",
+                                            "top": "51vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "$$$",
+                                            "position": "absolute",
+                                            "left": "42vw",
+                                            "top": "59vh"
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://images.vexels.com/media/users/3/137415/isolated/preview/0e475bb9b17b3fa4f94f31fba1635b8f-telephone-call-icon-logo-by-vexels.png",
+                                            "height": 100,
+                                            "width": 100,
+                                            "position": "absolute",
+                                            "left": "20vw",
+                                            "top": "70vh"
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://pngimage.net/wp-content/uploads/2018/06/website-png-logo-2.png",
+                                            "height": 100,
+                                            "width": 100,
+                                            "position": "absolute",
+                                            "left": "55vw",
+                                            "top": "70vh"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
