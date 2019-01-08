@@ -294,18 +294,17 @@ function getLocation(handlerInput){
 
   //need to find the address from the alexa api
   console.log('reached ;)');
-    var deviceId = handlerInput;
+    const {deviceId} = handlerInput.requestEnvelope.context.System.device;
+    const deviceAddressServiceClient = handlerInput.serviceClientFactory.
     console.log(deviceId, "output it!");
     const host = "api.amazonalexa.com";
     var path = "/v1/devices/"+deviceId+"/settings/address/countryAndPostalCode";
     httpsGet(host, path, (result) => {
+      console.log(result,'!');
       return "gimme the county & postal code",result;
     })
-
   //need to return the zipcode from the alexa api
   //via binary search
-
-
 }
 
 

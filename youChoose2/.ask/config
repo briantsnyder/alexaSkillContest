@@ -16,7 +16,7 @@
       },
       "resources": {
         "manifest": {
-          "eTag": "6c0e0282d877bf27f4e956b9e4c5d8ba"
+          "eTag": "34804385b1bc234699a5b4e20cb2e539"
         },
         "interactionModel": {
           "en-US": {
@@ -33,7 +33,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-youChoose2-matman",
             "handler": "index.handler",
-            "revisionId": "01d2e0fb-82b4-43b0-b185-6b329fd94f34",
+            "revisionId": "74849443-d48f-42f5-9d03-6d562423feeb",
             "runtime": "nodejs8.10"
           }
         ]
