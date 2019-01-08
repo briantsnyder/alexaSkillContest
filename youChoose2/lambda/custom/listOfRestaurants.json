@@ -1,0 +1,464 @@
+{
+    "type": "APL",
+    "version": "1.0",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-viewport-profiles",
+            "version": "1.0.0"
+        }
+    ],
+    "resources": [
+        {
+            "colors": {
+                "defaultColor": "#0A1EFF"
+            }
+        }
+    ],
+    "styles": {},
+    "layouts": {},
+    "mainTemplate": {
+        "items": [
+            {
+                "type": "Container",
+                "width": "100vw",
+                "height": "100vh",
+                "items": [
+                    {
+                        "type": "Frame",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "backgroundColor": "#0ADCFF",
+                        "item": {
+                            "type": "Container",
+                            "width": "100vw",
+                            "height": "100vh",
+                            "items": [
+                                {
+                                    "when": "${@viewportProfile == @hubLandscapeMedium || @viewportProfile == @tvLandscapeXLarge || @viewportProfile == @hubLandscapeLarge}",
+                                    "type": "Text",
+                                    "text": "Here are some Restaurants I found",
+                                    "color": "#FFFFFF",
+                                    "fontSize": "6vw",
+                                    "fontWeight": "900",
+                                    "lineHeight": "1",
+                                    "textAlign": "center"
+                                },
+                                {
+                                    "when": "${@viewportProfile == @hubRoundSmall}",
+                                    "type": "ScrollView",
+                                    "position": "absolute",
+                                    "top": "10vh",
+                                    "left": "20vw",
+                                    "height": "65vh",
+                                    "item": {
+                                        "type": "Container",
+                                        "width": "100vw",
+                                        "height": "325vh",
+                                        "items": [
+                                            {
+                                                "type": "Text",
+                                                "text": "Restaurants:",
+                                                "color": "#FFFFFF",
+                                                "fontSize": "10vw",
+                                                "fontWeight": "900"
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "Amalfi's",
+                                                "fontSize": "8vw",
+                                                "fontWeight": "700",
+                                                "color": "#000000"
+                                            },
+                                            {
+                                                "type": "Image",
+                                                "source": "https://s3-media3.fl.yelpcdn.com/bphoto/fVb3T1VHfvoYUoVjVb7Hvw/348s.jpg",
+                                                "height": 348,
+                                                "width": 348
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "Fedora",
+                                                "fontSize": "8vw",
+                                                "fontWeight": "700",
+                                                "color": "#000000"
+                                            }, 
+                                            {
+                                                "type": "Image",
+                                                "source": "https://static01.nyt.com/images/2011/06/15/dining/Briefs-span/Briefs-span-jumbo-v3.jpg",
+                                                "height": 348,
+                                                "width": 348
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "TJs",
+                                                "fontSize": "8vw",
+                                                "fontWeight": "700",
+                                                "color": "#000000"
+                                            },
+                                            {
+                                                "type": "Image",
+                                                "source": "https://tjsbeer.com/images/slider01.png",
+                                                "height": 348,
+                                                "width": 348
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "Chuckles",
+                                                "fontSize": "8vw",
+                                                "fontWeight": "700",
+                                                "color": "#000000"
+                                            },
+                                            {
+                                                "type": "Image",
+                                                "source": "http://m.chucklesrestaurant.com/i/ChucklesDR_003.jpg",
+                                                "height": 348,
+                                                "width": 348
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "when": "${@viewportProfile == @hubLandscapeMedium || @viewportProfile == @tvLandscapeXLarge}",
+                                    "type": "ScrollView",
+                                    "height": "100vh",
+                                    "item": {
+                                        "type": "Container",
+                                        "width": "100vw",
+                                        "height": "325vh",
+                                        "items": [
+                                            {
+                                                "type": "Text",
+                                                "text": "Amalfi's",
+                                                "fontSize": "5vw",
+                                                "lineHeight": "1",
+                                                "color": "#000000"
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "Some info about the restaurant",
+                                                "fontSize": "4vw",
+                                                "lineHeight": "1"
+                                            },
+                                            {
+                                                "type": "Container",
+                                                "width": "100vw",
+                                                "height": "348",
+                                                "direction": "row",
+                                                "items": [
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://s3-media3.fl.yelpcdn.com/bphoto/fVb3T1VHfvoYUoVjVb7Hvw/348s.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "http://www.reachfolk.com/wp-content/uploads/2016/09/650_69_741.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://i.vimeocdn.com/portrait/7168734_300x300",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "Fedora",
+                                                "fontSize": "5vw",
+                                                "lineHeight": "1",
+                                                "color": "#000000"
+                                            }, 
+                                            {
+                                                "type": "Text",
+                                                "text": "Some info about the restaurant",
+                                                "fontSize": "4vw",
+                                                "lineHeight": "1"
+                                            },
+                                            {
+                                                "type": "Container",
+                                                "width": "100vw",
+                                                "height": "348",
+                                                "direction": "row",
+                                                "items": [
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://static01.nyt.com/images/2011/06/15/dining/Briefs-span/Briefs-span-jumbo-v3.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://d37219swed47g7.cloudfront.net/media/CACHE/images/images/reviews/fedora/banners/1512663825.02/c7ee568cde6f95575ae91b82ffbbe88d.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://pixel.nymag.com/imgs/daily/grub/2015/12/17/17-fedora-1.w1200.h630.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "TJs",
+                                                "fontSize": "5vw",
+                                                "lineHeight": "1",
+                                                "color": "#000000"
+                                            }, 
+                                            {
+                                                "type": "Text",
+                                                "text": "Some info about the restaurant",
+                                                "fontSize": "4vw",
+                                                "lineHeight": "1"
+                                            },
+                                            {
+                                                "type": "Container",
+                                                "width": "100vw",
+                                                "height": "348",
+                                                "direction": "row",
+                                                "items": [
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://tjsbeer.com/images/slider01.png",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://www.paolivillageshoppes.com/wp-content/uploads/TJs-Bar.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://media-cdn.tripadvisor.com/media/photo-s/07/e6/2d/b1/tj-s-the-bar-side-of.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "Chuckles",
+                                                "fontSize": "5vw",
+                                                "lineHeight": "1",
+                                                "color": "#000000"
+                                            }, 
+                                            {
+                                                "type": "Text",
+                                                "text": "Some info about the restaurant",
+                                                "fontSize": "4vw",
+                                                "lineHeight": "1"
+                                            },
+                                            {
+                                                "type": "Container",
+                                                "width": "100vw",
+                                                "height": "348",
+                                                "direction": "row",
+                                                "items": [
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "http://m.chucklesrestaurant.com/i/ChucklesDR_003.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://cdn.doordash.com/media/restaurant/cover/ChucklesPizzaPastaLarencevillePenningtonRd160LawrencevilleNJ.png",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://bloximages.newyork1.vip.townnews.com/lancasteronline.com/content/tncms/assets/v3/editorial/e/11/e11d2d2f-c45e-5a9f-a1a5-1f9eb6dcc341/52314af769058.image.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "when": "${@viewportProfile == @hubLandscapeLarge}",
+                                    "type": "ScrollView",
+                                    "height": "100vh",
+                                    "item": {
+                                        "type": "Container",
+                                        "width": "100vw",
+                                        "height": "250vh",
+                                        "items": [
+                                            {
+                                                "type": "Text",
+                                                "text": "Amalfi's",
+                                                "fontSize": "5vw",
+                                                "lineHeight": "1",
+                                                "color": "#000000"
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "Some info about the restaurant",
+                                                "fontSize": "4vw",
+                                                "lineHeight": "1"
+                                            },
+                                            {
+                                                "type": "Container",
+                                                "width": "100vw",
+                                                "height": "348",
+                                                "direction": "row",
+                                                "items": [
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://s3-media3.fl.yelpcdn.com/bphoto/fVb3T1VHfvoYUoVjVb7Hvw/348s.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "http://www.reachfolk.com/wp-content/uploads/2016/09/650_69_741.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://i.vimeocdn.com/portrait/7168734_300x300",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "Fedora",
+                                                "fontSize": "5vw",
+                                                "lineHeight": "1",
+                                                "color": "#000000"
+                                            }, 
+                                            {
+                                                "type": "Text",
+                                                "text": "Some info about the restaurant",
+                                                "fontSize": "4vw",
+                                                "lineHeight": "1"
+                                            },
+                                            {
+                                                "type": "Container",
+                                                "width": "100vw",
+                                                "height": "348",
+                                                "direction": "row",
+                                                "items": [
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://static01.nyt.com/images/2011/06/15/dining/Briefs-span/Briefs-span-jumbo-v3.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://d37219swed47g7.cloudfront.net/media/CACHE/images/images/reviews/fedora/banners/1512663825.02/c7ee568cde6f95575ae91b82ffbbe88d.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://pixel.nymag.com/imgs/daily/grub/2015/12/17/17-fedora-1.w1200.h630.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "TJs",
+                                                "fontSize": "5vw",
+                                                "lineHeight": "1",
+                                                "color": "#000000"
+                                            }, 
+                                            {
+                                                "type": "Text",
+                                                "text": "Some info about the restaurant",
+                                                "fontSize": "4vw",
+                                                "lineHeight": "1"
+                                            },
+                                            {
+                                                "type": "Container",
+                                                "width": "100vw",
+                                                "height": "348",
+                                                "direction": "row",
+                                                "items": [
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://tjsbeer.com/images/slider01.png",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://www.paolivillageshoppes.com/wp-content/uploads/TJs-Bar.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://media-cdn.tripadvisor.com/media/photo-s/07/e6/2d/b1/tj-s-the-bar-side-of.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "Chuckles",
+                                                "fontSize": "5vw",
+                                                "lineHeight": "1",
+                                                "color": "#000000"
+                                            }, 
+                                            {
+                                                "type": "Text",
+                                                "text": "Some info about the restaurant",
+                                                "fontSize": "4vw",
+                                                "lineHeight": "1"
+                                            },
+                                            {
+                                                "type": "Container",
+                                                "width": "100vw",
+                                                "height": "348",
+                                                "direction": "row",
+                                                "items": [
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "http://m.chucklesrestaurant.com/i/ChucklesDR_003.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://cdn.doordash.com/media/restaurant/cover/ChucklesPizzaPastaLarencevillePenningtonRd160LawrencevilleNJ.png",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    },
+                                                    {
+                                                        "type": "Image",
+                                                        "source": "https://bloximages.newyork1.vip.townnews.com/lancasteronline.com/content/tncms/assets/v3/editorial/e/11/e11d2d2f-c45e-5a9f-a1a5-1f9eb6dcc341/52314af769058.image.jpg",
+                                                        "height": 348,
+                                                        "width": 348
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
