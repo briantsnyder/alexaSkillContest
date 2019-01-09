@@ -84,6 +84,11 @@ const YesHandler = {
 
     return response.speak(speakOutput)
                    .reprompt(repromptOutput)
+                   .addDirective({
+                     type: "AlexaPresentation.APL.RenderDocument",
+                     document: require("./listOfRestaurants.json"),
+                     datasources: {}
+                   })
                    .getResponse();
   }
 }
