@@ -23,6 +23,11 @@ const LaunchRequestHandler = {
     return handlerInput.responseBuilder
       .speak(welcomeMessage)
       .reprompt(helpMessage)
+      .addDirective({
+        type: "AlexaPresentation.APL.RenderDocument",
+        document: require("./homepage.json"),
+        datasources: {}
+      })
       .getResponse();
   }
 };
