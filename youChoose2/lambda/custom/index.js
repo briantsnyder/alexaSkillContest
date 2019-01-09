@@ -75,6 +75,11 @@ const YesHandler = {
       //maybe more elegant way to end??
       attributes.restaurant = restaurants[attributes.counter-1];
       return response.speak("Great! Shall I call "+attributes.restaurant+" for you?")
+                     .addDirective({
+                       type: "AlexaPresentation.APL.RenderDocument",
+                       document: require("./specificRestaurant.json"),
+                       datasources: {}
+                      })
                      .getResponse();
     }
 
