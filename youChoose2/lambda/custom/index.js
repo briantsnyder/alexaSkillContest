@@ -25,7 +25,7 @@ const LaunchRequestHandler = {
       .reprompt(helpMessage)
       .addDirective({
         type: "AlexaPresentation.APL.RenderDocument",
-        document: require("./homepage.json"),
+        document: require('./homepage.json'),
         datasources: {}
       })
       .getResponse();
@@ -77,7 +77,7 @@ const YesHandler = {
       return response.speak("Great! Shall I call "+attributes.restaurant+" for you?")
                      .addDirective({
                        type: "AlexaPresentation.APL.RenderDocument",
-                       document: require("./specificRestaurant.json"),
+                       document: require('./specificRestaurant.json'),
                        datasources: {}
                       })
                      .getResponse();
@@ -91,7 +91,7 @@ const YesHandler = {
                    .reprompt(repromptOutput)
                    .addDirective({
                      type: "AlexaPresentation.APL.RenderDocument",
-                     document: require("./listOfRestaurants.json"),
+                     document: require('./listOfRestaurants.json'),
                      datasources: {}
                    })
                    .getResponse();
