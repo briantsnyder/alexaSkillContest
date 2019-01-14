@@ -13,7 +13,7 @@
             "colors": {
                 "defaultColor": "#0A1EFF"
             }
-            }
+        }
             ],
     "styles": {},
     "layouts": {},
@@ -42,7 +42,7 @@
                                     "items": [
                                         {
                                             "type": "Text",
-                                            "text": "youChoose",
+                                            "text": "You Choose",
                                             "color": "#FFFFFF",
                                             "fontSize": "8vw",
                                             "fontWeight": "900",
@@ -52,7 +52,7 @@
                                         },
                                         {
                                             "type": "Text",
-                                            "text": "Hungy?",
+                                            "text": "Hungry?",
                                             "position": "absolute",
                                             "left": "43vw",
                                             "top": "35vh"
@@ -76,7 +76,7 @@
                                     "items": [
                                         {
                                             "type": "Text",
-                                            "text": "youChoose",
+                                            "text": "You Choose",
                                             "color": "#FFFFFF",
                                             "fontSize": "8vw",
                                             "fontWeight": "900",
@@ -86,7 +86,8 @@
                                         },
                                         {
                                             "type": "Text",
-                                            "text": "Hungy?",
+                                            "text": "Hungry?",
+                                            "fontSize": "4vw",
                                             "position": "absolute",
                                             "left": "43vw",
                                             "top": "35vh"
@@ -98,7 +99,7 @@
                                             "width": 400,
                                             "position": "absolute",
                                             "top": "43vh",
-                                            "left": "32vw"
+                                            "left": "35vw"
                                         }
                                     ]
                                 },
@@ -110,17 +111,17 @@
                                     "items": [
                                         {
                                             "type": "Text",
-                                            "text": "youChoose",
+                                            "text": "You Choose",
                                             "color": "#FFFFFF",
                                             "fontSize": "12vw",
                                             "fontWeight": "900",
                                             "position": "absolute",
-                                            "left": "20vw",
+                                            "left": "19vw",
                                             "top": "13vh"
                                         },
                                         {
                                             "type": "Text",
-                                            "text": "Hungy?",
+                                            "text": "Hungry?",
                                             "position": "absolute",
                                             "left": "38vw",
                                             "top": "25vh"
@@ -144,7 +145,7 @@
                                     "items": [
                                         {
                                             "type": "Text",
-                                            "text": "youChoose",
+                                            "text": "You Choose",
                                             "color": "#FFFFFF",
                                             "fontSize": "8vw",
                                             "fontWeight": "900",
@@ -154,7 +155,7 @@
                                         },
                                         {
                                             "type": "Text",
-                                            "text": "Hungy?",
+                                            "text": "Hungry?",
                                             "position": "absolute",
                                             "left": "42vw",
                                             "top": "25vh"
