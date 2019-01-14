@@ -103,6 +103,40 @@
                                     ]
                                 },
                                 {
+                                    "when": "${@viewportProfile == @hubRoundSmall}",
+                                    "type": "Container",
+                                    "width": "100vw",
+                                    "height": "100vh",
+                                    "items": [
+                                        {
+                                            "type": "Text",
+                                            "text": "youChoose",
+                                            "color": "#FFFFFF",
+                                            "fontSize": "12vw",
+                                            "fontWeight": "900",
+                                            "position": "absolute",
+                                            "left": "20vw",
+                                            "top": "13vh"
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "text": "Hungy?",
+                                            "position": "absolute",
+                                            "left": "38vw",
+                                            "top": "25vh"
+                                        },
+                                        {
+                                            "type": "Image",
+                                            "source": "https://www.dinnertwist.com.au/img/main/brand_logo_dark.png",
+                                            "height": 250,
+                                            "width": 250,
+                                            "position": "absolute",
+                                            "top": "35vh",
+                                            "left": "25vw"
+                                        }
+                                    ]
+                                },
+                                {
                                     "when": "@viewportProfile == @tvLandscapeXLarge}",
                                     "type": "Container",
                                     "width": "100vw",
@@ -133,40 +167,6 @@
                                             "position": "absolute",
                                             "top": "35vh",
                                             "left": "33vw"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "when": "${@viewportProfile == @hubRoundSmall}",
-                                    "type": "Container",
-                                    "width": "100vw",
-                                    "height": "100vh",
-                                    "items": [
-                                        {
-                                            "type": "Text",
-                                            "text": "youChoose",
-                                            "color": "#FFFFFF",
-                                            "fontSize": "12vw",
-                                            "fontWeight": "900",
-                                            "position": "absolute",
-                                            "left": "30vw",
-                                            "top": "20vh"
-                                        },
-                                        {
-                                            "type": "Text",
-                                            "text": "Hungy?",
-                                            "position": "absolute",
-                                            "left": "43vw",
-                                            "top": "35vh"
-                                        },
-                                        {
-                                            "type": "Image",
-                                            "source": "https://www.dinnertwist.com.au/img/main/brand_logo_dark.png",
-                                            "height": 300,
-                                            "width": 300,
-                                            "position": "absolute",
-                                            "top": "43vh",
-                                            "left": "35vw"
                                         }
                                     ]
                                 }
